@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "pandas", "numpy"]
 build-backend = "hatchling.build"
 
 [project]
@@ -8,7 +8,7 @@ version = "2.0.1"
 authors = [
   { name="Achraf Mataich", email="achraf.mataich@outlook.com" },
 ]
-description = "A small example package"
+description = "A package for ML of ISGA FES"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
