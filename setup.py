@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='makeitlearn-isga',
-    version='2.5.1',
+    version='2.5.2',
     author='Achraf Mataich, ISGA Fes',
     author_email='achraf.mataich@edu.isga.ma',
     description='This is a simple Machine Learning module',
@@ -12,6 +12,8 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    requires=["pandas", "numpy"],
-    url="https://github.com/achrafmataich/ISGA_ML_Package"
+    install_requires=[
+        'numpy',
+        'pandas',
+    ],
 )
