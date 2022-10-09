@@ -3,20 +3,18 @@ import pandas as pd
 from math import sqrt, pow
 
 
-def common_data(list1, list2):
+def common_data(list1, list2) -> bool:
+    """
+    This function look for a common element between two arrays and return a boolean\n
+    common_data(['a', 'b'], ['c', 'd']) returns False\n
+    common_data(['a', 'b'], ['c', 'a']) returns True\n
+    """
     result = False
-
-    # traverse in the 1st list
     for x in list1:
-
-        # traverse in the 2nd list
         for y in list2:
-
-            # if one common
             if x == y:
                 result = True
                 return result
-
     return result
 
 
@@ -57,7 +55,7 @@ def ShowRawData():
 
 def nearestToOne(dfOriginal, one, infos):
     df = dfOriginal.copy()
-    df['Distance'] = df.apply(lambda player: norme(player, one, infos), axis=1)
+    df['Distance'] = df.apply(lambda element: norme(element, one, infos), axis=1)
     df = df.sort_values(by='Distance', ascending=True)
     return df
 
@@ -75,9 +73,8 @@ def findCommonData(list1, list2):
     return 1 if common_data(list1, list2) else 0
 
 
-def getNearestK(train, player, infosList, col):
-    topK = nearestToOne(train, player, infosList).head(
-        (len(train[col].unique())*2)+1)
+def getNearestKClass(train, player, infosList, col, K):
+    topK = nearestToOne(train, player, infosList).head(K)
     val = ''
     for m in topK[col].mode():
         val += m + ','
@@ -171,7 +168,6 @@ class Ml_1:
 
     def normalizeTrain(self):
         for norm in self.normList:
-            print("NORMALIZING " + str(norm))
             self.train[norm] = pd.to_numeric(self.train[norm])
             self.train[norm] = self.train[norm].fillna(0)
             self.train["Norm_" + str(norm)] = self.train.apply(
@@ -212,11 +208,17 @@ class Ml_1:
                     ),
                     axis=1)
 
-    def KNN(self, col) -> str:
+    def KNN(self, col, K) -> str:
         self.test['predicted {}'.format(col)] = self.test.apply(
-            lambda element: getNearestK(self.train, element, self.
-                                        infosToCalculate, col),
-            axis=1)
+            lambda element: getNearestKClass(
+                self.train,
+                element,
+                self.infosToCalculate,
+                col,
+                K
+            ),
+            axis=1
+        )
         return self.test.loc[0, 'predicted {}'.format(col)]
 
     def gettrain(self) -> pd.DataFrame:
