@@ -1,0 +1,7 @@
+setup.py
+makeitlearn_isga/__init__.py
+makeitlearn_isga.egg-info/PKG-INFO
+makeitlearn_isga.egg-info/SOURCES.txt
+makeitlearn_isga.egg-info/dependency_links.txt
+makeitlearn_isga.egg-info/requires.txt
+makeitlearn_isga.egg-info/top_level.txt

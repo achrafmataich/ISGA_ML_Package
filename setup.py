@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='makeitlearn-isga',
-    version='2.5.2',
+    version='2.6.1',
     author='Achraf Mataich, ISGA Fes',
     author_email='achraf.mataich@edu.isga.ma',
     description='This is a simple Machine Learning module',
